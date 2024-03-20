@@ -22,7 +22,7 @@
           "type": "files",
           "label": "添加文件打开方式",
           "fileType": "file",
-          "match": "/\\.(exe|app)/i",
+          "match": "/\\.(exe|app|cmd|ps1|bat|sh)/i",
           "minLength": 1
         },
         {
