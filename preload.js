@@ -13,7 +13,7 @@ function addSoftware(path) {
   }
   softwares.push({
     path: path,
-    name: path.split("/").pop()
+    name: path.split("/").pop(),
   });
   utools.dbStorage.setItem(softwareKey, softwares);
   utools.showNotification("添加成功: " + path);
@@ -67,10 +67,14 @@ window.exports = {
       },
       select: (action, itemData, callbackSetList) => {
         window.utools.hideMainWindow();
-        require("child_process").spawn(
-          itemData.url,
-          action.payload.map((file) => file.path)
-        );
+        if (!require("fs").existsSync(itemData.url)) {
+          utools.showNotification("打开失败: 打开方式不存在 " + itemData.url);
+        } else {
+          require("child_process").spawn(
+            itemData.url,
+            action.payload.map((file) => file.path)
+          );
+        }
         window.utools.outPlugin();
       },
       placeholder: "选择打开方式",
