@@ -3,6 +3,10 @@ const softwareKey = nativeId + "/softwares";
 
 function addSoftware(path) {
   path = path.replace(/\\/g, "/");
+  if (!require("fs").existsSync(path)) {
+    utools.showNotification("添加失败: 文件不存在 " + path);
+    return;
+  }
   let softwares = utools.dbStorage.getItem(softwareKey);
   if (softwares == null) {
     softwares = [];
@@ -36,7 +40,7 @@ function getSoftwares(filter) {
     return [];
   }
   if (filter) {
-    return softwares.filter((software) => software.name.includes(filter));
+    return softwares.filter((software) => software.name.toLowerCase().includes(filter.toLowerCase()));
   }
   return softwares;
 }
