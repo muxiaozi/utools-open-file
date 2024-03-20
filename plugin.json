@@ -42,7 +42,7 @@
         {
             "type": "regex",
             "label": "添加文件打开方式",
-            "match": "/\\.exe/i"
+            "match": "/\\.(exe|app|cmd|ps1|bat|sh)/i"
         }
       ]
     },
