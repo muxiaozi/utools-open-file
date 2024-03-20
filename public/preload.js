@@ -66,7 +66,7 @@ window.exports = {
         callbackSetList(list);
       },
       select: (action, itemData, callbackSetList) => {
-        window.utools.hideMainWindow();
+        utools.hideMainWindow();
         if (!require("fs").existsSync(itemData.url)) {
           utools.showNotification("打开失败: 打开方式不存在 " + itemData.url);
         } else {
@@ -75,7 +75,7 @@ window.exports = {
             action.payload.map((file) => file.path)
           );
         }
-        window.utools.outPlugin();
+        utools.outPlugin();
       },
       placeholder: "选择打开方式",
     },
@@ -84,6 +84,7 @@ window.exports = {
     mode: "none",
     args: {
       enter: (action) => {
+        utools.hideMainWindow();
         if (action.type == "files") {
           for (const file of action.payload) {
             addSoftware(file.path);
@@ -96,8 +97,8 @@ window.exports = {
           utools.showNotification(
             "添加失败: 未知的添加方式 " + JSON.stringify(action)
           );
-          return;
         }
+        utools.outPlugin();
       },
     },
   },
@@ -125,9 +126,9 @@ window.exports = {
         callbackSetList(list);
       },
       select: (action, itemData, callbackSetList) => {
+        utools.hideMainWindow();
         deleteSoftware(itemData.url);
-        window.utools.hideMainWindow();
-        window.utools.outPlugin();
+        utools.outPlugin();
       },
       placeholder: "选择要删除的打开方式",
     },
