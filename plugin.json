@@ -1,0 +1,55 @@
+{
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "features": [
+    {
+      "code": "open_file",
+      "explain": "打开文件",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "打开文件",
+          "fileType": "file",
+          "minLength": 1
+        }
+      ]
+    },
+    {
+      "code": "add_software",
+      "explain": "添加文件打开方式",
+      "cmds": [
+        {
+          "type": "files",
+          "label": "添加文件打开方式",
+          "fileType": "file",
+          "match": "/\\.(exe|app)/i",
+          "minLength": 1
+        },
+        {
+          "type": "window",
+          "label": "添加文件打开方式",
+          "match": {
+            "app": [
+              "WINWORD.EXE",
+              "EXCEL.EXE",
+              "POWERPNT.EXE",
+              "OUTLOOK.EXE",
+              "MSACCESS.EXE",
+              "ONENOTE.EXE"
+            ]
+          }
+        },
+        {
+            "type": "regex",
+            "label": "添加文件打开方式",
+            "match": "/\\.exe/i"
+        }
+      ]
+    },
+    {
+      "code": "delete_software",
+      "explain": "删除文件打开方式",
+      "cmds": ["删除文件打开方式"]
+    }
+  ]
+}
